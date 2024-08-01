@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Digital Clock</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="cyberpunk.mp4" type="video/mp4">
+    </video>
+    <div class="container">
+        <div class="mode-switcher">
+            <button id="clockMode" class="button">Clock</button>
+            <button id="timerMode" class="button">Timer</button>
+            <button id="alarmMode" class="button">Alarm</button>
+            <button id="stopwatchMode" class="button">Stopwatch</button>
+        </div>
+        <div id="clock-container" class="clock-container" aria-label="Digital clock showing current time">
+            <div class="clock" role="timer" aria-live="polite">
+                <div id="hours" class="time" aria-label="hours"></div>
+                <span>:</span>
+                <div id="minutes" class="time" aria-label="minutes"></div>
+                <span>:</span>
+                <div id="seconds" class="time" aria-label="seconds"></div>
+                <span>:</span>
+                <div id="milliseconds" class="time" aria-label="milliseconds"></div>
+                <span id="ampm" class="time" aria-label="am-pm"></span>
+            </div>
+            <div id="date" class="date" aria-label="current date"></div>
+            <div class="controls">
+                <button id="toggleFormat" class="button">Toggle 12/24 Hour</button>
+                <select id="timezone" class="select">
+                    <option value="local">Local Time</option>
+                    <option value="UTC">UTC</option>
+                    <option value="America/New_York">New York</option>
+                    <option value="Europe/London">London</option>
+                    <option value="Asia/Tokyo">Tokyo</option>
+                    <!-- Add more time zones as needed -->
+                </select>
+            </div>
+        </div>
+        <div id="timer-container" class="hidden">
+            <div class="timer-display">
+                <span id="timer-hours" class="time">00</span>:<span id="timer-minutes" class="time">00</span>:<span id="timer-seconds" class="time">00</span>
+            </div>
+            <div class="controls">
+                <input id="timer-input" type="time" step="1" class="input" />
+                <button id="startTimer" class="button">Start</button>
+                <button id="pauseTimer" class="button">Pause</button>
+                <button id="resetTimer" class="button">Reset</button>
+            </div>
+        </div>
+        <div id="alarm-container" class="hidden">
+            <div class="alarm-list" id="alarmList"></div>
+            <div class="controls">
+                <input id="alarm-time" type="time" class="input" />
+                <button id="setAlarm" class="button">Set Alarm</button>
+            </div>
+        </div>
+        <div id="stopwatch-container" class="hidden">
+            <div class="stopwatch-display">
+                <span id="stopwatch-hours" class="time">00</span>:<span id="stopwatch-minutes" class="time">00</span>:<span id="stopwatch-seconds" class="time">00</span>:<span id="stopwatch-milliseconds" class="time">000</span>
+            </div>
+            <div class="controls">
+                <button id="startStopwatch" class="button">Start</button>
+                <button id="stopStopwatch" class="button">Stop</button>
+                <button id="resetStopwatch" class="button">Reset</button>
+                <button id="lapStopwatch" class="button">Lap</button>
+            </div>
+            <div class="laps" id="stopwatchLaps"></div>
+        </div>
+    </div>
+    <audio id="alarmSound" src="alarm.mp3" preload="auto"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
